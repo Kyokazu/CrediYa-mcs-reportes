@@ -1,0 +1,56 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: "msc-reportes"
+  devtools:
+    add-properties: false
+    restart:
+      enabled: false
+
+avaliableRoles:
+  role: "ADMIN"
+
+  h2:
+    console:
+      enabled: true
+      path: "/h2"
+  profiles:
+    include: null
+jwt:
+  secret: "${JWT_SECRET}"
+aws:
+  access-key: "${AWS_ACCESS_KEY_ID}"
+  secret-key: "${AWS_SECRET_ACCESS_KEY}"
+  sqs:
+    region: "${AWS_REGION}"
+  dynamodb:
+    endpoint: "http://localhost:8000"
+adapter:
+  sqs:
+    region: "us-east-1"
+    queueUrl: "http://localhost:4566/000000000000/sample"
+    endpoint: "http://localhost:4566 # For localstack only"
+routes:
+  paths:
+    report: "/api/v1/reportes"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,prometheus"
+  endpoint:
+    health:
+      probes:
+        enabled: true
+cors:
+  allowed-origins: "http://localhost:4200,http://localhost:8080"
+entrypoint:
+  sqs:
+    region: "${AWS_REGION}"
+    endpoint:
+    queueUrl: "${AWS_APPROVED_LOAN_RESPONSE_QUEUE_URL}"
+    waitTimeSeconds: 20
+    maxNumberOfMessages: 10
+    visibilityTimeoutSeconds: 10
+    numberOfThreads: 1
