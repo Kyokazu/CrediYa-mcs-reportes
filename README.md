@@ -33,11 +33,14 @@ El servicio gestiona la creación de reportes del balance de préstamos realizad
 
 ### Infraestructura y Cloud (AWS)
 - **ECR**
-- ** ECS **
-- ** RDS ** 
-- ** Secrets Manager** 
-- ** Elastic Load Balancer** 
-- ** API Gateway**
+- **SQS**
+- **SES**
+- **Lambda**
+- **ECS**
+- **RDS** 
+- **Secrets Manager** 
+- **Elastic Load Balancer** 
+- **API Gateway**
 
 ---
 
